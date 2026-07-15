@@ -11,6 +11,9 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "Work In Progress"
+    url: /wip/
+
   - title: "Conferences"
     url: /talks/    
 
@@ -19,6 +22,8 @@ main:
     
   - title: "CV"
     url: /cv/
+
+  
     
   # - title: "CV"
   #   url: /cv-json/
