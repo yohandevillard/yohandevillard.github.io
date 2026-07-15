@@ -11,6 +11,38 @@ author_profile: true
 
 {% endif %}
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
+{% assign today = site.time | date: "%Y%m%d" | plus: 0 %}
+
+<h2>Upcoming talks</h2>
+
+{% assign upcoming_count = 0 %}
+
+{% for post in site.talks %}
+  {% assign talk_date = post.date | date: "%Y%m%d" | plus: 0 %}
+
+  {% if talk_date >= today %}
+    {% assign upcoming_count = upcoming_count | plus: 1 %}
+    {% include archive-single-talk.html %}
+  {% endif %}
 {% endfor %}
+
+{% if upcoming_count == 0 %}
+  <p>No upcoming talks currently scheduled.</p>
+{% endif %}
+
+<h2>Past talks</h2>
+
+{% assign past_count = 0 %}
+
+{% for post in site.talks reversed %}
+  {% assign talk_date = post.date | date: "%Y%m%d" | plus: 0 %}
+
+  {% if talk_date < today %}
+    {% assign past_count = past_count | plus: 1 %}
+    {% include archive-single-talk.html %}
+  {% endif %}
+{% endfor %}
+
+{% if past_count == 0 %}
+  <p>No past talks listed.</p>
+{% endif %}
